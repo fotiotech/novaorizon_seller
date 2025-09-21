@@ -189,35 +189,6 @@ export default function AdminOverview() {
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {/* Users Card */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-600">Users</h2>
-              <Link
-                href="/users"
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-              >
-                View All
-              </Link>
-            </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-3xl font-bold">
-                  {overviewData?.users.total || 0}
-                </p>
-                <p className="text-sm text-gray-500 mt-1">
-                  {overviewData?.users.active || 0} active users
-                </p>
-                <p className="text-sm text-green-600 mt-1">
-                  +{overviewData?.users.newThisMonth || 0} this month
-                </p>
-              </div>
-              <div className="w-20 h-20">
-                <Doughnut data={userStatusData} options={chartOptions} />
-              </div>
-            </div>
-          </div>
-
           {/* Products Card */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="flex items-center justify-between mb-4">

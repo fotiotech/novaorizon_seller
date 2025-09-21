@@ -39,7 +39,7 @@ export async function signup(state: FormState, formData: FormData) {
       username: name,
       email: email,
       password: password,
-      role: "user",
+      role: "seller",
       status: "active",
     });
 

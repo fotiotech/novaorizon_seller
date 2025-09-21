@@ -46,7 +46,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
     }
 
     // Check if user has admin role
-    if (!session.user || session.user.role !== "admin") {
+    if (!session.user || session.user.role !== "seller") {
       router.push("/auth/unauthorized");
     }
   }, [session, status, router]);

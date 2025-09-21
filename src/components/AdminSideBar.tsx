@@ -39,7 +39,9 @@ import {
   Payment,
   Language,
   Room,
+  Message,
 } from "@mui/icons-material";
+import { MessageCircle } from "lucide-react";
 
 interface MenuLink {
   name: string;
@@ -69,20 +71,14 @@ const menuConfig: MenuSection[] = [
         href: "/notifications",
         icon: <Notifications />,
       },
-      { name: "Chat", href: "/chat", icon: <Chat /> },
+      { name: "Messages", href: "/chat", icon: <Message /> },
     ],
   },
   {
     title: "Catalog",
     links: [
       { name: "Products", href: "/products", icon: <Inventory2 /> },
-      { name: "Categories", href: "/categories", icon: <Category /> },
       { name: "Brands", href: "/brands", icon: <Tag /> },
-      {
-        name: "Attributes",
-        href: "/attributes",
-        icon: <Assignment />,
-      },
       { name: "Inventory", href: "/inventory", icon: <Inventory /> },
     ],
   },
@@ -100,71 +96,31 @@ const menuConfig: MenuSection[] = [
     ],
   },
   {
-    title: "Customers",
-    links: [
-      { name: "Customer List", href: "/customers", icon: <Person2 /> },
-      { name: "Segmentation", href: "/segmentation", icon: <Segment /> },
-      {
-        name: "Communication History",
-        href: "/communication_log",
-        icon: <History />,
-      },
-      { name: "Reviews", href: "/reviews", icon: <Assignment /> },
-    ],
-  },
-  {
     title: "Marketing",
     links: [
       {
-        name: "Promotions",
+        name: "Discounts",
         href: "/discounts_coupons",
         icon: <Discount />,
       },
       {
-        name: "Email Campaigns",
-        href: "/email_marketing",
+        name: "Promotions",
+        href: "/promotions",
         icon: <Email />,
       },
       {
-        name: "Content Management",
-        href: "/content_merchandising",
+        name: "Advertising",
+        href: "/advertising",
         icon: <CollectionsBookmark />,
-      },
-      {
-        name: "Hero Sections",
-        href: "/hero_section",
-        icon: <Store />,
-      },
-      {
-        name: "Navigation Menus",
-        href: "/content_merchandising/menus",
-        icon: <CollectionsBookmark />,
-      },
-    ],
-  },
-  {
-    title: "Financial",
-    links: [
-      {
-        name: "Financial Overview",
-        href: "/finance",
-        icon: <AttachMoney />,
-      },
-      { name: "Invoices", href: "/invoices", icon: <Receipt /> },
-      { name: "Refunds", href: "/refunds", icon: <Replay /> },
-      {
-        name: "Tax Reports",
-        href: "/tax_shipping_reports",
-        icon: <ReceiptLong />,
       },
     ],
   },
   {
     title: "Analytics",
     links: [
-      { name: "Sales Analytics", href: "/sales_reports", icon: <Assessment /> },
+      { name: "Sales Reports", href: "/sales_reports", icon: <Assessment /> },
       {
-        name: "Customer Analytics",
+        name: "Customer Insights",
         href: "/customer_report",
         icon: <BarChart />,
       },
@@ -176,44 +132,15 @@ const menuConfig: MenuSection[] = [
     ],
   },
   {
-    title: "SEO",
-    links: [
-      {
-        name: "Sitemaps",
-        href: "/sitemaps_generation",
-        icon: <Public />,
-      },
-      {
-        name: "Metadata",
-        href: "/meta_tags_url",
-        icon: <Code />,
-      },
-    ],
-  },
-  {
-    title: "User Management",
-    links: [
-      { name: "Users", href: "/users", icon: <ManageAccounts /> },
-      {
-        name: "Roles & Permissions",
-        href: "/permissions_roles",
-        icon: <Group />,
-      },
-      { name: "Audit Log", href: "/audit_log", icon: <History /> },
-    ],
-  },
-  {
     title: "Settings",
     links: [
       {
-        name: "General Settings",
+        name: "Store Settings",
         href: "/settings/general",
         icon: <Settings />,
       },
       { name: "Payment Methods", href: "/payment", icon: <Payment /> },
-      { name: "Shipping Options", href: "/shipping", icon: <LocalShipping /> },
-      { name: "Tax Configuration", href: "/tax", icon: <Receipt /> },
-      { name: "Localization", href: "/local", icon: <Room /> },
+      { name: "Shipping Zones", href: "/shipping", icon: <LocalShipping /> },
     ],
   },
   {
