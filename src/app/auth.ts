@@ -32,7 +32,10 @@ const providers: Provider[] = [
           id: user._id.toString(),
           name: user.name,
           email: user.email,
-          role: user.role === "customer" ? "seller" : user.role,
+          role:
+            user.role === "customer" || user.role === "user"
+              ? "seller"
+              : user.role,
           image: user.image,
         };
       } catch (error) {
