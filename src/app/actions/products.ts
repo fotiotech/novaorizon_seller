@@ -150,7 +150,8 @@ export async function createProduct(
 ): Promise<ProductResponse> {
   try {
     await connection();
-    const { category_id, brand, related_products, ...attributes } = formData;
+    const { seller, category_id, brand, related_products, ...attributes } =
+      formData;
 
     if (!category_id) {
       return { success: false, error: "Valid category_id is required" };
@@ -170,6 +171,7 @@ export async function createProduct(
 
     // Prepare update data
     const updateData: any = {
+      seller: new mongoose.Types.ObjectId(seller),
       category_id: new mongoose.Types.ObjectId(category_id),
       brand: new mongoose.Types.ObjectId(brand),
       ...cleanedAttributes,
@@ -219,7 +221,8 @@ export async function updateProduct(
 ): Promise<any> {
   try {
     await connection();
-    const { category_id, brand, related_products, ...attributes } = formData;
+    const { seller, category_id, brand, related_products, ...attributes } =
+      formData;
 
     if (!productId) {
       return { success: false, error: "Valid product ID is required" };
@@ -240,6 +243,9 @@ export async function updateProduct(
     // Create update object
     const updateData: any = { ...cleanedAttributes, updatedAt: new Date() };
 
+    if (seller) {
+      updateData.seller = new mongoose.Types.ObjectId(seller);
+    }
     // Handle category_id if provided
     if (category_id) {
       updateData.category_id = new mongoose.Types.ObjectId(category_id);

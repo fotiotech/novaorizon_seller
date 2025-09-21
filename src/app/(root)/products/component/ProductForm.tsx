@@ -19,6 +19,7 @@ import {
 import { AttributeField } from "@/components/products/AttributeFields";
 import ManageRelatedProduct from "../../../../components/products/ManageRelatedProduct";
 import VariantsManager from "@/components/products/variants/VariantOption";
+import { useSession } from "next-auth/react";
 
 export type AttributeDetail = {
   _id: string;
@@ -42,6 +43,8 @@ export type GroupNode = {
 
 const ProductForm = () => {
   const dispatch = useAppDispatch();
+  const { data: session, status } = useSession();
+  const seller = session?.user?.id;
   const router = useRouter();
   const productState = useAppSelector((state: RootState) => state.product);
   const productId = productState.allIds[0];
@@ -245,7 +248,7 @@ const ProductForm = () => {
       if (!isNewProduct) {
         res = await updateProduct(productId, product);
       } else {
-        res = await createProduct(product as any);
+        res = await createProduct({ ...product, seller } as any);
       }
 
       if (res.success) {

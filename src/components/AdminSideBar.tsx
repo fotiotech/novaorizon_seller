@@ -186,7 +186,7 @@ const AdminSideBar: React.FC<AdminSideBarProps> = ({
             <Link href="/" className="flex items-center">
               <Image src="/logo.png" alt="logo" width={60} height={40} />
               <span className="ml-2 text-xl font-bold text-gray-800 dark:text-white">
-                Admin Panel
+                Seller
               </span>
             </Link>
             {screenSize <= 1024 && (

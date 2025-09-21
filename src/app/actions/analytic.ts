@@ -183,23 +183,30 @@ export async function getOrderAnalytics() {
   }
 }
 
-export async function getProductAnalytics(): Promise<ProductAnalytics> {
+export async function getProductAnalytics(
+  seller?: string
+): Promise<ProductAnalytics> {
   try {
     await connection();
 
     // Get total products count
-    const totalProducts = await Product.countDocuments();
+    const totalProducts = await Product.countDocuments({ seller });
 
     // Get active products count
-    const activeProducts = await Product.countDocuments({ status: "active" });
+    const activeProducts = await Product.countDocuments({
+      seller,
+      status: "active",
+    });
 
     // Get out of stock products count
     const outOfStock = await Product.countDocuments({
+      seller,
       stock_status: { $in: ["Out of Stock", "out of stock"] },
     });
 
     // Get low stock products count
     const lowStock = await Product.countDocuments({
+      seller,
       stock_status: { $in: ["Low Stock", "low stock"] },
     });
 
@@ -316,7 +323,7 @@ export async function getProductAnalytics(): Promise<ProductAnalytics> {
   }
 }
 
-export async function getOverviewData() {
+export async function getOverviewData(seller?: string) {
   try {
     await connection();
 
@@ -330,12 +337,17 @@ export async function getOverviewData() {
     });
 
     // Get product statistics
-    const totalProducts = await Product.countDocuments();
-    const activeProducts = await Product.countDocuments({ status: "active" });
+    const totalProducts = await Product.countDocuments({ seller });
+    const activeProducts = await Product.countDocuments({
+      seller,
+      status: "active",
+    });
     const outOfStock = await Product.countDocuments({
+      seller,
       stock_status: { $in: ["Out of Stock", "out of stock"] },
     });
     const lowStock = await Product.countDocuments({
+      seller,
       stock_status: { $in: ["Low Stock", "low stock"] },
     });
 

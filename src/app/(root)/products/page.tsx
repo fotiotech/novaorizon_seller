@@ -21,6 +21,7 @@ import { useAppDispatch } from "@/app/hooks";
 import { clearProduct, resetProduct } from "@/app/store/slices/productSlice";
 import { v4 as uuidv4 } from "uuid";
 import { persistor } from "@/app/store/store";
+import { useSession } from "next-auth/react";
 
 // Register ChartJS components
 ChartJS.register(
@@ -64,12 +65,14 @@ interface ProductAnalytics {
 
 export default function ProductDashboard() {
   const dispatch = useAppDispatch();
+  const { data: session, status } = useSession();
   const [productData, setProductData] = useState<ProductAnalytics | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const seller = session?.user?.id;
 
   const clearStore = async () => {
     try {
@@ -86,7 +89,7 @@ export default function ProductDashboard() {
   useEffect(() => {
     async function fetchProductData() {
       try {
-        const data = await getProductAnalytics();
+        const data = await getProductAnalytics(seller);
         setProductData(data);
       } catch (err) {
         console.error("Failed to fetch product data:", err);

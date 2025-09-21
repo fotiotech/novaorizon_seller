@@ -17,6 +17,7 @@ import {
   LineElement,
 } from "chart.js";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { useSession } from "next-auth/react";
 
 // Register ChartJS components
 ChartJS.register(
@@ -60,6 +61,8 @@ interface OverviewData {
 }
 
 export default function AdminOverview() {
+  const { data: session, status } = useSession();
+  const seller = session?.user?.id;
   const [overviewData, setOverviewData] = useState<OverviewData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +71,7 @@ export default function AdminOverview() {
   useEffect(() => {
     async function fetchOverviewData() {
       try {
-        const data = await getOverviewData();
+        const data = await getOverviewData(seller);
         setOverviewData(data);
       } catch (err) {
         console.error("Failed to fetch overview data:", err);
