@@ -36,7 +36,7 @@ export async function signup(state: FormState, formData: FormData) {
   } else {
     // 3. Insert the user into the database or call an Auth Library's API
     const newUser = new User({
-      username: name,
+      name: name,
       email: email,
       password: password,
       role: "seller",

@@ -46,10 +46,10 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
     }
 
     // Check if user has admin role
-    if (!session.user || session.user.role !== "seller") {
+    if (!session?.user || session?.user?.role !== "seller") {
       router.push("/auth/unauthorized");
     }
-  }, [session, status, router]);
+  }, [session, session?.user?.role, status, router]);
 
   if (status === "loading") {
     return (
@@ -62,7 +62,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
     );
   }
 
-  if (!session || !session.user || session.user.role !== "admin") {
+  if (!session || !session.user || session.user.role !== "seller") {
     return null;
   }
 

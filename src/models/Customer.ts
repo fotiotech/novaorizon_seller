@@ -5,7 +5,7 @@ interface ICustomer extends Document {
   userId: mongoose.Types.ObjectId; // Reference to the User (authenticated user)
   photo: string;
   language: string;
-  billingAddress: {
+  billingAddress?: {
     firstName: string;
     lastName: string;
     email: string;
@@ -17,7 +17,7 @@ interface ICustomer extends Document {
     postalCode?: string;
     preferences?: string[]; // Array to store customer preferences
   };
-  shippingAddress: {
+  shippingAddress?: {
     street: string;
     region: string;
     city: string;
@@ -51,9 +51,9 @@ const CustomerSchema: Schema<ICustomer> = new Schema(
     photo: { type: String },
     language: { type: String },
     billingAddress: {
-      firstName: { type: String, required: true },
-      lastName: { type: String, required: true },
-      email: { type: String, required: true, unique: true },
+      firstName: { type: String, required: true, default: null },
+      lastName: { type: String, required: true, default: null },
+      email: { type: String, required: true,default: null },
       phone: { type: String },
       address: { type: String },
       city: { type: String },
